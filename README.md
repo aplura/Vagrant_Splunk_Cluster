@@ -5,11 +5,19 @@ Let's use vagrant to auto-provision a Splunk Clustered Environment.
 * 3 Search Heads
 
 #How-To
+
+First, install Vagrant and Virtualbox (but this could probably use whatever Vagrant has hooks for). 
+
+This was built with Vagrant 1.7.2 and Virtualbox 4.2.3.
+
 Simply run init.sh. This takes about 15 minutes on my machine. The virtual machines use an internal network to communicate with each other, but can also communicate to the outside if needed. The subnet is 10.10.50.0/24. You can access each individual machine using its corresponding port based by IP. In other terms, if the machine IP is 10.10.50.130, the local port to access it is 50130. Any number from 50130-5139 is reserved for any other port that may be needed on that machine. These systems are Cent OS 7 (x64) running Splunk 6.2.3. This can be changed by editing the local variables at the top of the Vagrantfile. Each VM can be ssh'd into using the command "vagrant ssh <hostname>". In the list below, each <hostname> is the first bullet point. master, idx1, idx2, etc. 
 
 The license is a Trial License, so License Master will not work until you grant a valid license.
 
 The Vagrantfile will stand up the entire Indexer Cluster, Search Head Cluster, and Master Node, and configure each as needed.
+
+The credentials for all systems are: admin/superS3cr3t.
+
 
 * master
     * VM IP: 10.10.50.130
