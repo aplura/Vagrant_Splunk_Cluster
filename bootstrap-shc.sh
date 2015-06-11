@@ -10,7 +10,7 @@ HOSTNAME=$(hostname)
 IPADDR=$(ifconfig -a | grep 10.10.50. | awk -F' ' '{ print $2}')
 ## Setup Search Head Clustering Members
 echo "Running Search Head Init"
-splunk init shcluster-config -auth admin:changeme -mgmt_uri "https://$IPADDR:8089" -replication_port 8090 -conf_deploy_fetch_url https://10.10.50.130:8089 -secret vagrant
+splunk init shcluster-config -auth admin:changeme -mgmt_uri "https://$IPADDR:8089" -replication_port 8191 -conf_deploy_fetch_url https://10.10.50.130:8089 -secret vagrant
 splunk restart
 
 ## ELECT THE CAPTIAN, AYE!
