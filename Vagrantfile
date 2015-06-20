@@ -67,6 +67,20 @@ Vagrant.configure("2") do |config|
                 end
 
         end
+		
+	config.vm.define "shd" do |shd|
+		shc3.vm.hostname = "vagrant-shd"
+                shc3.vm.network "private_network", ip: "10.10.50.165",
+                        virtualbox__intnet: true
+                shc3.vm.network :forwarded_port, host: 50160, guest: 8000
+                shc3.vm.network :forwarded_port, host: 50161, guest: 8089
+
+                shc3.vm.provision "splunk_base", type: "shell" do |s|
+                        s.path = "bootstrap-shd.sh"
+                        s.args = _SPLUNK_VERSION
+                end
+
+        end
 
 	config.vm.define "shc1" do |shc1|
 		shc1.vm.hostname = "vagrant-shc1"
@@ -111,18 +125,4 @@ Vagrant.configure("2") do |config|
 
         end
         
-        
-        config.vm.define "shd" do |shc3|
-		shc3.vm.hostname = "vagrant-shd"
-                shc3.vm.network "private_network", ip: "10.10.50.165",
-                        virtualbox__intnet: true
-                shc3.vm.network :forwarded_port, host: 50160, guest: 8000
-                shc3.vm.network :forwarded_port, host: 50161, guest: 8089
-
-                shc3.vm.provision "splunk_base", type: "shell" do |s|
-                        s.path = "bootstrap-shd.sh"
-                        s.args = _SPLUNK_VERSION
-                end
-
-        end
 end
