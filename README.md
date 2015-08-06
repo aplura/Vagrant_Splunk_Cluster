@@ -1,3 +1,6 @@
+#Experimental, use https://github.com/aplura/Vagrant_Splunk_Cluster instead
+
+
 Let's use vagrant to auto-provision a Splunk Clustered Environment.
 
 * 1 Master Node
